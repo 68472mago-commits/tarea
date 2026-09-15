@@ -206,7 +206,20 @@ p {
   margin: 14px 0 10px 0;
   height: 80px;
 }
-
+  .meta-banner {
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    padding: 12px 18px;
+    margin-bottom: 24px;
+    font-family: var(--mono);
+    font-size: 12px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .meta-banner span strong {
+    color: var(--teal-deep);
+  }
 .row .block {
   background: var(--teal);
   width: 36px;
