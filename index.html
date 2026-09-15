@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>El mundo de las bases de datos a gran escala</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="sheet">
+
+    <!-- ============================================
+         HEADER
+         ============================================ -->
+    <header>
+      <p class="eyebrow">actividad formativa — sistemas de bases de datos</p>
+      <h1>El mundo de las bases de datos a gran escala</h1>
+      <p class="lede">Cómo las organizaciones almacenan, mueven y protegen volúmenes masivos de información, y por qué la arquitectura que eligen determina qué tan rápido, disponible y consistente es ese dato.</p>
+    </header>
+
+    <!-- ============================================
+         SECCIÓN 01 — EL CONCEPTO
+         ============================================ -->
+    <section>
+      <div class="two-col">
+        <div>
+          <p class="kicker">01 — el concepto</p>
+          <h2>¿Qué es una base de datos a gran escala?</h2>
+          <p>Es un sistema de almacenamiento diseñado para capturar, organizar y consultar volúmenes de datos que superan la capacidad práctica de un solo servidor o de un motor relacional tradicional. En lugar de vivir en una sola máquina, estas bases de datos reparten la información entre muchos nodos que trabajan de forma coordinada.</p>
+          <p>Su propósito no es solo "guardar más": es sostener miles o millones de lecturas y escrituras simultáneas, provenientes de aplicaciones web, sensores, dispositivos móviles y sistemas empresariales que nunca dejan de generar datos.</p>
+        </div>
+        <div>
+          <img class="photo" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Cableado de red en un centro de datos">
+          <p class="caption">Foto: Taylor Vick / Unsplash — infraestructura de red que interconecta nodos de almacenamiento.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECCIÓN 02 — LAS 5 V's
+         ============================================ -->
+    <section>
+      <p class="kicker">02 — características del dato</p>
+      <h2>Las cinco dimensiones del Big Data</h2>
+      <p>Cuando se habla de datos a gran escala, cinco rasgos —conocidos como las "5 V"— describen el reto real que enfrenta cualquier arquitectura de datos.</p>
+      <div class="vgrid">
+        <div class="vcard">
+          <span class="letter">V</span>
+          <h3>Volumen</h3>
+          <p>La cantidad de datos generados crece de gigabytes a petabytes, superando lo que un solo servidor puede almacenar.</p>
+        </div>
+        <div class="vcard">
+          <span class="letter">V</span>
+          <h3>Velocidad</h3>
+          <p>El ritmo al que llegan y deben procesarse los datos, muchas veces en tiempo real o casi real.</p>
+        </div>
+        <div class="vcard">
+          <span class="letter">V</span>
+          <h3>Variedad</h3>
+          <p>Datos estructurados, semiestructurados y no estructurados: texto, imágenes, video, registros de sensores.</p>
+        </div>
+        <div class="vcard">
+          <span class="letter">V</span>
+          <h3>Veracidad</h3>
+          <p>La confiabilidad y calidad del dato: qué tan libre está de ruido, errores o inconsistencias.</p>
+        </div>
+        <div class="vcard">
+          <span class="letter">V</span>
+          <h3>Valor</h3>
+          <p>La utilidad real que se extrae del dato una vez analizado, la razón última por la que se recolecta.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECCIÓN 03 — ESCALABILIDAD
+         ============================================ -->
+    <section>
+      <p class="kicker">03 — cómo se crece</p>
+      <h2>Escalabilidad vertical y horizontal</h2>
+      <p>Cuando un sistema empieza a quedarse corto, existen dos caminos distintos para darle más capacidad.</p>
+      <div class="scale-wrap">
+        <div class="scale-panel">
+          <h3>Escalabilidad vertical</h3>
+          <div class="stack vert">
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+          </div>
+          <p>Consiste en aumentar la potencia de un mismo servidor: más memoria RAM, más procesador, más almacenamiento. Es simple de aplicar, pero tiene un límite físico y crea un único punto de falla.</p>
+        </div>
+        <div class="scale-panel">
+          <h3>Escalabilidad horizontal</h3>
+          <div class="row">
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+          </div>
+          <p>Consiste en añadir más servidores que se reparten la carga de trabajo. Cuesta más coordinar los nodos, pero permite crecer casi sin límite y reduce el riesgo de que una sola máquina detenga todo el sistema.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECCIÓN 04 — ARQUITECTURA
+         ============================================ -->
+    <section>
+      <p class="kicker">04 — cómo se organiza</p>
+      <h2>Arquitectura centralizada y distribuida</h2>
+      <div class="arch-wrap">
+        <div class="arch-panel">
+          <h3>Centralizada</h3>
+          <svg viewBox="0 0 220 140" width="220" height="140">
+            <circle class="node hub" cx="110" cy="70" r="22"/>
+            <text x="110" y="74" text-anchor="middle" class="nodelabel" fill="#fff">servidor</text>
+            <line class="edge" x1="110" y1="70" x2="40" y2="30"/>
+            <line class="edge" x1="110" y1="70" x2="180" y2="30"/>
+            <line class="edge" x1="110" y1="70" x2="40" y2="110"/>
+            <line class="edge" x1="110" y1="70" x2="180" y2="110"/>
+            <circle class="node n" cx="40" cy="30" r="10"/>
+            <circle class="node n" cx="180" cy="30" r="10"/>
+            <circle class="node n" cx="40" cy="110" r="10"/>
+            <circle class="node n" cx="180" cy="110" r="10"/>
+          </svg>
+          <p>Todos los datos y el procesamiento residen en un único servidor o clúster central. Es fácil de administrar y mantener consistente, pero si ese punto falla o se satura, todo el sistema se detiene.</p>
+        </div>
+        <div class="arch-panel">
+          <h3>Distribuida</h3>
+          <svg viewBox="0 0 220 140" width="220" height="140">
+            <line class="edge" x1="60" y1="35" x2="150" y2="35"/>
+            <line class="edge" x1="60" y1="35" x2="40" y2="105"/>
+            <line class="edge" x1="150" y1="35" x2="180" y2="105"/>
+            <line class="edge" x1="40" y1="105" x2="110" y2="120"/>
+            <line class="edge" x1="180" y1="105" x2="110" y2="120"/>
+            <line class="edge" x1="60" y1="35" x2="110" y2="120"/>
+            <circle class="node n" cx="60" cy="35" r="12"/>
+            <circle class="node n" cx="150" cy="35" r="12"/>
+            <circle class="node n" cx="40" cy="105" r="12"/>
+            <circle class="node n" cx="180" cy="105" r="12"/>
+            <circle class="node n" cx="110" cy="120" r="12"/>
+          </svg>
+          <p>Los datos se reparten entre varios nodos que se comunican entre sí, típicamente en distintos servidores o ubicaciones físicas. Si un nodo falla, los demás pueden seguir operando.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECCIÓN 05 — DISPONIBILIDAD
+         ============================================ -->
+    <section>
+      <div class="avail-wrap">
+        <div>
+          <p class="kicker">05 — resiliencia</p>
+          <h2>Disponibilidad y tolerancia a fallos</h2>
+          <p class="metric">24 / 7</p>
+          <p class="metric-label">expectativa habitual de servicio ininterrumpido</p>
+          <p>La <b>disponibilidad</b> mide qué tan accesible está el sistema para responder solicitudes en todo momento. La <b>tolerancia a fallos</b> es la capacidad del sistema de seguir funcionando aunque uno o varios de sus componentes fallen, generalmente gracias a la replicación de datos entre distintos nodos o centros de datos.</p>
+          <p>Ambas propiedades dependen directamente de la arquitectura distribuida: entre más copias redundantes existan de la información, menor es el riesgo de que una falla se traduzca en una caída total del servicio.</p>
+        </div>
+        <div>
+          <img class="photo" src="https://images.unsplash.com/photo-1580106815433-a5b1d1d53d85?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Pasillo de un centro de datos con puertas de vidrio">
+          <p class="caption">Foto: Paul Hanaoka / Unsplash — instalaciones redundantes que sostienen la continuidad del servicio.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECCIÓN 06 — TEOREMA CAP
+         ============================================ -->
+    <section>
+      <p class="kicker">06 — el equilibrio imposible</p>
+      <h2>Teorema CAP</h2>
+      <div class="cap-wrap">
+        <div>
+          <svg viewBox="0 0 260 220" width="260" height="220">
+            <polygon points="130,20 30,190 230,190" fill="none" stroke="#1B2430" stroke-width="1.5"/>
+            <circle class="node" cx="130" cy="20" r="14" fill="#33478C"/>
+            <circle class="node" cx="30" cy="190" r="14" fill="#2C6E63"/>
+            <circle class="node" cx="230" cy="190" r="14" fill="#B5541D"/>
+            <text x="130" y="6" text-anchor="middle" font-family="Courier New, monospace" font-size="11" fill="#1B2430">C</text>
+            <text x="14" y="212" text-anchor="middle" font-family="Courier New, monospace" font-size="11" fill="#1B2430">A</text>
+            <text x="246" y="212" text-anchor="middle" font-family="Courier New, monospace" font-size="11" fill="#1B2430">P</text>
+          </svg>
+        </div>
+        <div class="cap-legend">
+          <div>
+            <span class="dot c"></span>
+            <div><b>Consistencia (C)</b><br><span>Toda lectura recibe el dato más reciente escrito, sin versiones desactualizadas.</span></div>
+          </div>
+          <div>
+            <span class="dot a"></span>
+            <div><b>Disponibilidad (A)</b><br><span>Cada solicitud recibe una respuesta, aunque no todos los nodos estén sincronizados.</span></div>
+          </div>
+          <div>
+            <span class="dot p"></span>
+            <div><b>Tolerancia a particiones (P)</b><br><span>El sistema sigue funcionando aunque se pierda la comunicación entre nodos.</span></div>
+          </div>
+          <p style="font-size:13px;color:var(--ink-soft);margin-top:4px;">El teorema, formulado por Eric Brewer, plantea que un sistema distribuido solo puede garantizar plenamente dos de estas tres propiedades al mismo tiempo, nunca las tres a la vez.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECCIÓN 07 — EJEMPLO
+         ============================================ -->
+    <section class="tint">
+      <div class="example">
+        <div>
+          <span class="tagline">ejemplo de aplicación</span>
+          <h2>Comercio electrónico</h2>
+          <p>Una plataforma de venta en línea es uno de los casos más claros de base de datos a gran escala: debe registrar catálogos con millones de productos, procesar picos de tráfico en fechas como el Buen Fin, mantener el inventario sincronizado entre bodegas y garantizar que el carrito de compra y el pago funcionen sin interrupciones.</p>
+          <p>Para lograrlo combina escalabilidad horizontal (más servidores en temporada alta), arquitectura distribuida (centros de datos en distintas regiones) y una postura del teorema CAP orientada a la disponibilidad, priorizando que el sitio nunca deje de responder aunque, por instantes, algún dato tarde en sincronizarse entre nodos.</p>
+        </div>
+        <div>
+          <img class="photo" src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Persona realizando una compra en línea con laptop y tarjeta">
+          <p class="caption">Foto: rupixen / Unsplash — una transacción de comercio electrónico dispara múltiples escrituras en la base de datos.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer>
+      <span>actividad formativa 1 — bases de datos a gran escala</span>
+      <span>ver conclusión y referencias en el documento de word adjunto</span>
+    </footer>
+
+  </div>
+</body>
+</html>
